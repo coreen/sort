@@ -1,12 +1,12 @@
 /*
-Function reads its input into an array, then uses the selection
+Function reads its input into an array, then uses insertion
 sort algorithm to sort the array.
 */
 
 #include<stdio.h>
 
 // initializes the functions used
-void selectionSort(int[], int);
+void insertionSort(int[], int);
 void tableFill(int[], int);
 
 int main(void)
@@ -29,16 +29,16 @@ int main(void)
 
     // printing information to the user through stdout
     // prints out the resulting array
-    printf("\narray before selection sort: \n");
+    printf("\narray before insertion sort: \n");
     for (x = 0; x < arrSize; x++) {
         printf("%i ", *(arr + x));
     }
 
-    // sorts the array using selection sort
-    selectionSort(arr, arrSize);
+    // sorts the array using insertion sort
+    insertionSort(arr, arrSize);
     printf("\n");
 
-    printf("array after selection sort: \n");
+    printf("array after insertion sort: \n");
     for (y = 0; y < arrSize; y++) {
         printf("%i ", *(arr + y));
     }
@@ -47,23 +47,18 @@ int main(void)
     return 0;
 }
 
-// uses the selection sort algorithm to sort the given array
-void selectionSort(int arr[], int arrSize) {
-    // minimum variable holds the current minimum of the array
-    int minimum = 0;
-    // used in the for loops to sort the array
+// uses the insertion sort algorithm to sort the given array
+void insertionSort(int arr[], int arrSize) {
     int x = 0;
-    int y = 0;
-    for (x = 0; x < arrSize - 1; x++) {
-        minimum = x;
-        for (y = x + 1; y < arrSize; y++) {
-            if (arr[y] < arr[minimum]) {
-                minimum = y;
-            }
-        }
+    for (x = 1; x < arrSize - 1; x++) {
         int temp = arr[x];
-        arr[x] = arr[minimum];
-        arr[minimum] = temp;
+        int y = x - 1;
+        // swap intermediate values until temp in sorted position
+        while (y >= 0 && arr[y] > temp) {
+            arr[y + 1] = arr[y];
+            y--;
+        }
+        arr[y + 1] = temp;
     }
 }
 
