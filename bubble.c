@@ -51,7 +51,7 @@ int main(void)
 void bubbleSort(int arr[], int arrSize) {
     // flag to track if swapping is done
     int swapped = 0;
-    while (swapped) {
+    while (swapped == 0) {
         swapped = 1;
         int x = 0;
         for (x = 1; x < arrSize; x++) {
